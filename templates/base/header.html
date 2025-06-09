@@ -12,8 +12,14 @@
 
 <!-- Adding Custom Font -->
 <style>
-    @font-face { font-family: JuneBug; src: url({% static 'fonts/Minion-Regular.ttf' %}); } 
+    @font-face {
+        font-family: 'Minion-Regular';
+        src: url('{% static "fonts/Minion-Regular.ttf" %}') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+        
     h1, h2, p, a, b {
-       font-family: Minion-Regular
+        font-family: 'Minion-Regular', serif;
     }
 </style>

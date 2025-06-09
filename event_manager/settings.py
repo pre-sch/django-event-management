@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     # 3rd party apps
     'crispy_forms',
     'mapbox_location_field',
-    'ckeditor',
-    'ckeditor_uploader',
+    #'ckeditor',
+    #'ckeditor_uploader',
+    'django_ckeditor_5',
     'betterforms',
 
     # Local apps
@@ -59,7 +60,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'event_management.urls'
+ROOT_URLCONF = 'event_manager.urls'
 
 TEMPLATES = [
     {
@@ -77,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'event_management.wsgi.application'
+WSGI_APPLICATION = 'event_manager.wsgi.application'
 
 
 # Database
@@ -90,6 +91,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -141,11 +145,28 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MAPBOX_KEY = "pk.eyJ1IjoibWlnaHR5c2hhcmt5IiwiYSI6ImNqd2duaW4wMzBhcWI0M3F1MTRvbHB0dWcifQ.1sDAD43q0ktK1Sr374xGfw"
 
 # Ckeditor config
-CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+# CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
 
-CKEDITOR_UPLOAD_PATH = "event-details/"
-CKEDITOR_CONFIGS = {
+# CKEDITOR_UPLOAD_PATH = "event-details/"
+#CKEDITOR_CONFIGS = {
+#    'default': {
+#        'toolbar': None,
+#    },
+#}
+
+DJANGO_CKEDITOR_5_CONFIGS = {
     'default': {
-        'toolbar': None,
-    },
+        'toolbar': [
+            'heading', '|', 'bold', 'italic', 'link',
+            'bulletedList', 'numberedList', '|', 'blockQuote'
+        ],
+        'heading': {
+            'options': [
+                {'model': 'paragraph', 'title': 'Paragraph', 'class': 'ck-heading_paragraph'},
+                {'model': 'heading1', 'view': 'h1', 'title': 'Heading 1', 'class': 'ck-heading_heading1'},
+                {'model': 'heading2', 'view': 'h2', 'title': 'Heading 2', 'class': 'ck-heading_heading2'},
+            ]
+        },
+        'language': 'en',
+    }
 }

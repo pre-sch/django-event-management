@@ -1,7 +1,8 @@
 from django.db import models
 from django.urls import reverse
 from mapbox_location_field.models import LocationField
-from ckeditor_uploader.fields import RichTextUploadingField
+from django_ckeditor_5.fields import CKEditor5Field
+
 
 
 class EventCategory(models.Model):
@@ -38,7 +39,7 @@ class Event(models.Model):
     category = models.ForeignKey(EventCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, unique=True)
     uid = models.PositiveIntegerField(unique=True)
-    description = RichTextUploadingField()
+    description = CKEditor5Field('Text', config_name='default')
     job_category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
     select_scheduled_status = (
         ('yet to scheduled', 'Yet to Scheduled'),

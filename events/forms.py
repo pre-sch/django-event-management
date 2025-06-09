@@ -1,11 +1,11 @@
 from django import forms
 from betterforms.multiform import MultiModelForm
 
+from django_ckeditor_5.widgets import CKEditor5Widget
 from .models import Event, EventImage, EventAgenda
 
 
 class EventForm(forms.ModelForm):
-
 
     class Meta:
         model = Event
@@ -13,7 +13,9 @@ class EventForm(forms.ModelForm):
         widgets = {
             'start_date': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
             'end_date': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'description': CKEditor5Widget(config_name='default'),
         }
+
 
 
 class EventImageForm(forms.ModelForm):
